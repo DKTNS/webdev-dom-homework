@@ -9,7 +9,7 @@ import { sanitizeHtml } from './sanitizeHtml.js';
 //Выводим комменты
 export const renderComments = () => {
   const appHtml = document.getElementById("app");
-/*   console.log(commentList); */
+  /*   console.log(commentList); */
   const commentsHtml = commentList.map((comment, index) => {
     return `<li class="comment" data-index="${index}">
           <div class="comment-header">
@@ -51,13 +51,13 @@ export const renderComments = () => {
     `
   }
 
-  appHtml.innerHTML = contentHtml()
+  appHtml.innerHTML = contentHtml();
 
-  
+
   //Переход к форме авторизации по клику
- const setLoginBtn = () => {
+  const setLoginBtn = () => {
     const buttonLoginElement = document.getElementById("render-login-btn");
-    if (!buttonLoginElement){
+    if (!buttonLoginElement) {
       return;
     }
     buttonLoginElement.addEventListener("click", (event) => {
@@ -66,9 +66,6 @@ export const renderComments = () => {
     });
   };
   setLoginBtn();
-
-
-
 };
 
 /* initLikeListener();
@@ -76,29 +73,29 @@ initDeleteButtonsListeners();
 quoteCommets(); */
 
 
-  //Активность кнопки лайк
-  export const initLikeListener = () => {
-    const buttonLike = document.querySelectorAll(".like-button");
-    for (const iteratorLike of buttonLike) {
-      iteratorLike.addEventListener("click", (event) => {
-        
-        event.stopPropagation();
-        if (!token) {
-          alert("autorize")
-          return
-        }
-        const index = iteratorLike.dataset.index;
-        commentList[index].likes += commentList[index].isLiked ? -1 : +1;
-        commentList[index].isLiked = !commentList[index].isLiked;
-        renderComments(); //перерисовываем форму для лайков с счетчиком
-        initLikeListener()
+//Активность кнопки лайк
+export const initLikeListener = () => {
+  const buttonLike = document.querySelectorAll(".like-button");
+  for (const iteratorLike of buttonLike) {
+    iteratorLike.addEventListener("click", (event) => {
 
-      });
-    }
- 
+      event.stopPropagation();
+      if (!token) {
+        alert("autorize")
+        return
+      }
+      const index = iteratorLike.dataset.index;
+      commentList[index].likes += commentList[index].isLiked ? -1 : +1;
+      commentList[index].isLiked = !commentList[index].isLiked;
+      renderComments(); //перерисовываем форму для лайков с счетчиком
+      initLikeListener()
+
+    });
   }
-  
-  
+
+}
+
+
 //Цитирование
 export const quoteCommets = () => {
   const textAreaElement = document.getElementById("add-text");
@@ -111,7 +108,7 @@ export const quoteCommets = () => {
       textAreaElement.value = `${commentText} > ${commentAuthor}`;
     })
   };
- /*  addComment(); */
+  /*  addComment(); */
 };
 
 export const addComment = () => {
@@ -161,8 +158,6 @@ export const addComment = () => {
           alert("Отуствует соединение к интеренету");
         };
         buttonElement.disabled = false;
-        /* renderComments(); */
-
       })
   })
   if (getToken) {
@@ -171,14 +166,12 @@ export const addComment = () => {
       initLikeListener();
       initDeleteButtonsListeners();
       quoteCommets();
-     renderComments();
-     exit();
+      renderComments();
     });
 
-    /* addComment(); */
   }
   fetchAndRenderComments();
- 
+
 
 };
 

@@ -40,11 +40,9 @@ export const fetchAndRenderComments = () => {
     if (token) {
       const buttonElement = document.getElementById("add-form-button");
       buttonElement.disabled = false;
-      
       initLikeListener();
       initDeleteButtonsListeners();
-      addComment();
-      renderComments();
+      addComment();   
     }
   });
 
