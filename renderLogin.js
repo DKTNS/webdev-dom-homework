@@ -8,19 +8,24 @@ export const renderLoginForm = () => {
     const loginHtml = `
     <div class="container">
       <div class="add-form">
+      <div class="input-form">
         <input 
         type="text"
         id="login-input" 
         class="add-form-name"
         placeholder="Логин"
         />
+        </div>
+        <div class="input-form">
         <input 
         type="text"
         id="password-input"
         class="add-form-name"
         placeholder="Пароль"
         />
+        </div>
         <button id="login-form-button" class="add-form-button">Войти</button>
+        <button id="reg-button" class="reggister-button" href="#">Зарегистрироваться</button>
       </div>
     </div>`;
     appHtml.innerHTML = loginHtml;

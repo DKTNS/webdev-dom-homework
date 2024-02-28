@@ -34,7 +34,7 @@ export const renderComments = () => {
   //Форма ввода комментария
   const contentHtml = () => {
     const btnLogin = `
-    <p class="render-login-btn">  Чтобы добавить комментарий, 
+    <p class="render-login-btn style-autorisation" >  Чтобы добавить комментарий, 
     <a id="render-login-btn">авторизуйтесь</a> </p>`
 
     if (!token) return `<ul id="comments" class="comments">${commentsHtml}</ul>
