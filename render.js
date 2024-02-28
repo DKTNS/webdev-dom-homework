@@ -45,10 +45,11 @@ export const renderComments = () => {
       <textarea id="add-text" type="textArea" class="add-form-text" placeholder="Введите ваш коментарий"
         rows="4"></textarea>
       <div class="add-form-row">
-        <button id="add-form-button" class="add-form-button">Написать</button>
-        </div>
-        <div id="add-comment" ></div>
         <button id="exit-button" class="add-form-button">Выйти</button>
+        <button id="add-form-button" class="add-form-button">Написать</button>
+        
+        </div>
+
     </div>
 
     `
