@@ -2,16 +2,15 @@ import { commentList, fetchAndRenderComments } from "./main.js";
 import { initDeleteButtonsListeners } from "./delbutton.js";
 import { setToken, token, postComment, getComments, getToken } from "./api.js";
 import { renderLoginForm } from "./renderLogin.js";
-import { sanitizeHtml } from './sanitizeHtml.js';
-
-
+import { sanitizeHtml } from "./sanitizeHtml.js";
 
 //Выводим комменты
 export const renderComments = () => {
   const appHtml = document.getElementById("app");
   /*   console.log(commentList); */
-  const commentsHtml = commentList.map((comment, index) => {
-    return `<li class="comment" data-index="${index}">
+  const commentsHtml = commentList
+    .map((comment, index) => {
+      return `<li class="comment" data-index="${index}">
           <div class="comment-header">
             <div id="">${comment.name}</div>
             <div>${comment.date}</div>
@@ -29,15 +28,17 @@ export const renderComments = () => {
             </div>
           </div>
         </li>`;
-  }).join("");
+    })
+    .join("");
 
   //Форма ввода комментария
   const contentHtml = () => {
     const btnLogin = `
     <p class="render-login-btn style-autorisation" >  Чтобы добавить комментарий, 
-    <a id="render-login-btn">авторизуйтесь</a> </p>`
+    <a id="render-login-btn">авторизуйтесь</a> </p>`;
 
-    if (!token) return `<ul id="comments" class="comments">${commentsHtml}</ul>
+    if (!token)
+      return `<ul id="comments" class="comments">${commentsHtml}</ul>
      ${btnLogin}`;
     return `<ul id="comments" class="comments">${commentsHtml}</ul>
     <div id="add-form" class="add-form">
@@ -47,23 +48,20 @@ export const renderComments = () => {
       <div class="add-form-row">
         <button id="exit-button" class="add-form-button">Выйти</button>
         <button id="add-form-button" class="add-form-button">Написать</button>
-        
         </div>
-
     </div>
+    `;
+  };
 
-    `
-  }
-
-  appHtml.innerHTML = contentHtml()
+  appHtml.innerHTML = contentHtml();
 
   function exit() {
     const exitButton = document.getElementById("exit-button");
-    exitButton?.addEventListener('click', () => {
+    exitButton?.addEventListener("click", () => {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       renderLoginForm();
-    })
+    });
   }
 
   //Переход к форме авторизации по клику
@@ -79,37 +77,30 @@ export const renderComments = () => {
   };
   setLoginBtn();
   exit();
-
-
 };
 
 /* initLikeListener();
 initDeleteButtonsListeners();
 quoteCommets(); */
 
-
 //Активность кнопки лайк
 export const initLikeListener = () => {
   const buttonLike = document.querySelectorAll(".like-button");
   for (const iteratorLike of buttonLike) {
     iteratorLike.addEventListener("click", (event) => {
-
       event.stopPropagation();
       if (!token) {
-        alert("autorize")
-        return
+        alert("autorize");
+        return;
       }
       const index = iteratorLike.dataset.index;
       commentList[index].likes += commentList[index].isLiked ? -1 : +1;
       commentList[index].isLiked = !commentList[index].isLiked;
       renderComments(); //перерисовываем форму для лайков с счетчиком
-      initLikeListener()
-
+      initLikeListener();
     });
   }
-
-}
-
+};
 
 //Цитирование
 export const quoteCommets = () => {
@@ -121,8 +112,8 @@ export const quoteCommets = () => {
       const commentText = commentList[index].text;
       const commentAuthor = commentList[index].name;
       textAreaElement.value = `${commentText} > ${commentAuthor}`;
-    })
-  };
+    });
+  }
   /*  addComment(); */
 };
 
@@ -130,7 +121,7 @@ export const addComment = () => {
   const textAreaElement = document.getElementById("add-text");
   const inputElement = document.getElementById("add-name");
   const buttonElement = document.getElementById("add-form-button");
-  console.log(inputElement, textAreaElement)
+  console.log(inputElement, textAreaElement);
   buttonElement.addEventListener("click", () => {
     inputElement.classList.remove("error");
     if (inputElement.value === "") {
@@ -139,11 +130,13 @@ export const addComment = () => {
     if (textAreaElement.value === "") {
       textAreaElement.classList.add("error");
       return;
-    };
+    }
 
     //2.13. надпись о загрузке коммента и блокировка кнопки "добавить".
-    postComment(/* inputElement.value,
-      textAreaElement.value,  */sanitizeHtml(textAreaElement.value))
+    postComment(
+      /* inputElement.value,
+      textAreaElement.value,  */ sanitizeHtml(textAreaElement.value),
+    )
       .then((response) => {
         if (response.status === 201) {
           /* return response.json(); */
@@ -155,10 +148,12 @@ export const addComment = () => {
         }
         if (response.status === 400) {
           throw new Error("Некорректный запрос error 400");
-        } if (response.status === 500) {
+        }
+        if (response.status === 500) {
           throw new Error("Ошибка сервера error 500");
         }
-      }).then(() => {
+      })
+      .then(() => {
         inputElement.value = "";
         textAreaElement.value = "";
         return /* getComments() */;
@@ -171,15 +166,14 @@ export const addComment = () => {
           alert("Ошибка сервера");
         } else if (error.message === "Failed to fetch") {
           alert("Отуствует соединение к интеренету");
-        };
+        }
         buttonElement.disabled = false;
         /* renderComments(); */
-
-      })
-  })
+      });
+  });
   if (getToken) {
-    const buttonElement = document.getElementById('add-button');
-    buttonElement.addEventListener('click', (event) => {
+    const buttonElement = document.getElementById("add-button");
+    buttonElement.addEventListener("click", (event) => {
       initLikeListener();
       initDeleteButtonsListeners();
       quoteCommets();
@@ -190,14 +184,4 @@ export const addComment = () => {
     /* addComment(); */
   }
   fetchAndRenderComments();
-
-
 };
-
-
-
-
-
-
-
-

@@ -27,6 +27,10 @@ export const renderRegisterForm = () => {
     const passwordInputElement = document.getElementById("password-input");
 
     registerButtonElement.addEventListener("click", () => {
+        if (!loginInputElement.value || !passwordInputElement.value || !nameInputElement.value) {
+            alert("Проверьте оба поля  на заполненность");
+            return
+          }
         register({
             name: nameInnputElement.value,
             login: loginInputElement.value,
@@ -39,6 +43,5 @@ export const renderRegisterForm = () => {
         });
     });
     renderRegisterForm();
-    renderComments();
 }
     

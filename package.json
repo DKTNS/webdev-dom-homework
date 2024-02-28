@@ -6,10 +6,19 @@
     "webpack-cli": "^5.1.4"
   },
   "devDependencies": {
-    "axios": "^1.6.7"
+    "axios": "^1.6.7",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "husky": "^9.0.11",
+    "prettier": "^3.2.5"
   },
   "scripts": {
     "dev": "webpack --mode development --watch",
-    "start": "http-server -p 3004"
+    "start": "http-server -p 3004",
+    "format": "prettier --write ./",
+    "lint:js": "stylelint ./**/*.js",
+    "prepare": "husky install",
+    "lint": "npm run lint:js && npm run lint:css"
   }
 }

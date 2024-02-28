@@ -25,9 +25,11 @@ body {
 .add-form {
   width: 596px;
   box-sizing: border-box;
-  background: radial-gradient(75.42% 75.42% at 50% 42.37%,
-      rgba(53, 53, 53, 0) 22.92%,
-      #7334ea 100%);
+  background: radial-gradient(
+    75.42% 75.42% at 50% 42.37%,
+    rgba(53, 53, 53, 0) 22.92%,
+    #7334ea 100%
+  );
   filter: drop-shadow(0px 20px 67px rgba(0, 0, 0, 0.08));
   border-radius: 20px;
 }
@@ -142,7 +144,7 @@ body {
 }
 
 .render-login-btn,
-.reggister-button {
+.register-button {
   margin-top: 24px;
   font-size: 24px;
   padding: 10px 20px;
@@ -157,14 +159,18 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   padding-bottom: 5px;
-    padding-top: 5px;
+  padding-top: 5px;
 }
 
 .style-autorisation {
   margin-top: 24px;
   font-size: 24px;
   padding: 10px 20px;
-  background: radial-gradient(75.42% 75.42% at 50% 42.37%, rgba(53, 53, 53, 0) 22.92%, #7334ea 100%);
+  background: radial-gradient(
+    75.42% 75.42% at 50% 42.37%,
+    rgba(53, 53, 53, 0) 22.92%,
+    #7334ea 100%
+  );
   filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.08));
   border-radius: 20px;
   cursor: pointer;
@@ -172,7 +178,7 @@ body {
 
 .style-autorisation:hover {
   scale: 1.1;
-  transition: 0.5s
+  transition: 0.5s;
 }
 
 .add-form-button:hover {
