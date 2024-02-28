@@ -48,12 +48,6 @@ export const fetchAndRenderComments = () => {
 };
 fetchAndRenderComments();
 
-//Цитата коммента
 
-
-/* initDeleteButtonsListeners(); */
-
-
-//функция добавления коммента
 
 
